@@ -86,6 +86,7 @@
 | 2024 | Skia Meets React Native: Revolutionizing Mobile UIs &amp; Animations | React Universe Conference, Wrocław |
 | 2023 | Supercharge Your Web Development with React &amp; AWS Amplify (workshop) | Online |
 | 2023 | Debug Ruby on Rails Apps Like a Ninja | Online |
+| 2022 | Building Serverless Apps with React &amp; AWS Amplify | React Global Summit |
 | 2021 | Real-Time Video Communication with React &amp; WebRTC | React Global Summit |
 | 2021 | A Case for Microinteractions &amp; Animations in Mobile Apps with React Native | React JS Case Study Festival |
 | 2020 | Building Apps Not for Many but for All: Accessibility with React Native | Cross Platform Mobile Summit |
