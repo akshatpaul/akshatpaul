@@ -2,6 +2,7 @@
 
 <p align="center">
   <b>Author · Developer · Speaker · Entrepreneur</b><br>
+  Founder &amp; CTO at <a href="https://company360.in">Company360.in</a> — building AI-powered organizations.<br>
   Technologist from India with deep experience across mobile, web and DevOps.<br>
   Author of 5 technical books, technical reviewer on 5 more, and a regular speaker at international conferences.
 </p>
@@ -66,7 +67,7 @@
 
 | Year | Title | Publisher |
 |------|-------|-----------|
-| 2022 | Creating Apps with React Native | — |
+| 2022 | Creating Apps with React Native | Apress |
 | 2021 | The Ruby Workshop | Packt |
 | 2019 | Practical React Native | Apress |
 | 2018 | Microservices in Action | Manning |
@@ -80,6 +81,7 @@
 
 | Year | Talk | Event |
 |------|------|-------|
+| 2026 | Building AI-Powered Organizations: Agentic AI for Enterprises (keynote) | CIO/CXO Roundtable — The AI World Organization × Rabbitt AI, Gurugram |
 | 2025 | Making Mobile Animations Effortless with Skia and React Native | React Global Online Summit '25 |
 | 2024 | Skia Meets React Native: Revolutionizing Mobile UIs &amp; Animations | React Universe Conference, Wrocław |
 | 2023 | Supercharge Your Web Development with React &amp; AWS Amplify (workshop) | Online |
@@ -91,7 +93,7 @@
 | 2017 | Microservices, Containers &amp; Kubernetes at Scale | DevOps@Scale, Amsterdam |
 | 2013–14 | Keynote: Testing Strategies &amp; TDD | CIO Matrix, Bangkok &amp; Kuala Lumpur |
 
-<sub>16 talks, interviews and panels in total — see the full list on <a href="https://www.akshatpaul.com">akshatpaul.com/talks-interviews</a>.</sub>
+<sub>See the full list of talks, interviews and panels on <a href="https://www.akshatpaul.com">akshatpaul.com/talks-interviews</a>.</sub>
 
 ---
 
