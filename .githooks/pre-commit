@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Refresh commit-stats (chart + stats.md + README block) and stage them into
+# the current commit. Fail-soft: never blocks a commit if something goes wrong
+# (offline, no token, etc.). Regenerates at most once per UTC day.
+#
+# Enable with:  git config core.hooksPath .githooks
+
+set -u
+
+repo_root="$(git rev-parse --show-toplevel)" || exit 0
+cd "$repo_root" || exit 0
+
+# Skip during rebase / merge / cherry-pick to avoid surprises.
+git_dir="$(git rev-parse --git-dir)"
+for marker in rebase-merge rebase-apply MERGE_HEAD CHERRY_PICK_HEAD; do
+  [ -e "$git_dir/$marker" ] && exit 0
+done
+
+# Only bother on main.
+[ "$(git rev-parse --abbrev-ref HEAD)" = "main" ] || exit 0
+
+# Already refreshed today? stats.md ends with: _Last updated: 2026-09-01 ...
+today="$(date -u +%Y-%m-%d)"
+if [ -f stats.md ] && grep -q "_Last updated: ${today}" stats.md; then
+  exit 0
+fi
+
+# Pick an interpreter.
+if [ -x .venv/bin/python ]; then
+  PY=.venv/bin/python
+elif command -v python3 >/dev/null 2>&1; then
+  PY=python3
+else
+  echo "pre-commit: no python found, skipping stats refresh" >&2
+  exit 0
+fi
+
+# Token: env var, else gh CLI.
+if [ -z "${GH_TOKEN:-}" ] && [ -z "${GITHUB_TOKEN:-}" ]; then
+  if command -v gh >/dev/null 2>&1; then
+    GH_TOKEN="$(gh auth token 2>/dev/null)"
+    export GH_TOKEN
+  fi
+fi
+if [ -z "${GH_TOKEN:-}" ] && [ -z "${GITHUB_TOKEN:-}" ]; then
+  echo "pre-commit: no GitHub token (set GH_TOKEN or run 'gh auth login'), skipping stats refresh" >&2
+  exit 0
+fi
+
+echo "pre-commit: refreshing commit stats..." >&2
+if ! "$PY" monthly_commits.py >&2; then
+  echo "pre-commit: monthly_commits.py failed, committing without stats refresh" >&2
+  exit 0
+fi
+if ! "$PY" inject_stats.py >&2; then
+  echo "pre-commit: inject_stats.py failed, committing without stats refresh" >&2
+  exit 0
+fi
+
+git add monthly_commits.png stats.md README.md 2>/dev/null || true
+exit 0
